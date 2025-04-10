@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect('/home/home');
 });
 
 Route::view('/template', 'template');
@@ -25,6 +26,6 @@ Route::controller(\App\Http\Controllers\UserController::class)->prefix('/user')-
     Route::post('/logout', 'doLogout')->middleware([\App\Http\Middleware\OnlyMemberMiddleware::class]);
 });
 
-Route::controller(\App\Http\Controllers\HomeController::class)->prefix('/Home')->group(function () {
-    Route::get('/dashboard', 'dashboard');
+Route::controller(\App\Http\Controllers\HomeController::class)->prefix('/home')->group(function () {
+    Route::get('/home', 'home');
 });
