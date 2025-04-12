@@ -36,4 +36,59 @@ class TodolistServiceTest extends TestCase
             self::assertEquals("Hanif", $val["todo"]);
         }
     }
+
+    public function test_getempty()
+    {
+        self::assertEquals([], $this->todolistService->getTodo());
+    }
+
+    public function test_notempty()
+    {
+        $expected = [
+            [
+                "id" => "1",
+                "todo" => "Hanif"
+            ],
+            [
+                "id" => "2",
+                "todo" => "Kusuma"
+            ]
+        ];
+
+        $this->todolistService->addTodo("1", "Hanif");
+        $this->todolistService->addTodo("2", "Kusuma");
+
+        self::assertEquals($expected, $this->todolistService->getTodo());
+    }
+
+    public function test_remove()
+    {
+
+        $expected = [
+            [
+                "id" => "1",
+                "todo" => "Hanif"
+            ],
+            [
+                "id" => "2",
+                "todo" => "Kusuma"
+            ]
+        ];
+
+        // simulasi hapus index out of number
+        $this->todolistService->addTodo("1", "Hanif");
+        $this->todolistService->addTodo("2", "Kusuma");
+
+        $this->todolistService->removeTodo("3");
+
+        self::assertEquals($expected, $this->todolistService->getTodo());
+
+        $this->todolistService->removeTodo("1");
+        unset($expected[0]);
+        self::assertEquals($expected, $this->todolistService->getTodo());
+
+        $this->todolistService->removeTodo("2");
+        unset($expected[1]);
+        self::assertEquals($expected, $this->todolistService->getTodo());
+    }
 }

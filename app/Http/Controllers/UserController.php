@@ -55,6 +55,8 @@ class UserController extends Controller
     // aksi logoutnya
     public function doLogout(Request $request)
     {
+        // dd($request);
+        // exit;
         $request->session()->forget("user");
         return redirect("/");
     }

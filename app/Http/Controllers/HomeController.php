@@ -10,7 +10,7 @@ class HomeController extends Controller
     {
         // jika status sudah login maka arahkan ke user
         if ($request->session()->exists("user")) {
-            return redirect('/home/todolist');
+            return redirect('/todo/index');
         } else {
             // jika belum maka arahkan ke menu login
             return redirect('/user/login');

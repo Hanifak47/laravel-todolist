@@ -14,7 +14,7 @@ class HomeControllerTest extends TestCase
             "user" => "Hanif"
         ])
             ->get('/home/home')
-            ->assertRedirect('/home/todolist')
+            ->assertRedirect('/todo/index')
         ;
     }
 

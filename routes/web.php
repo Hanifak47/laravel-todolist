@@ -29,3 +29,12 @@ Route::controller(\App\Http\Controllers\UserController::class)->prefix('/user')-
 Route::controller(\App\Http\Controllers\HomeController::class)->prefix('/home')->group(function () {
     Route::get('/home', 'home');
 });
+
+Route::controller(\App\Http\Controllers\TodolistController::class)
+    ->middleware([\App\Http\Middleware\OnlyMemberMiddleware::class])
+    ->prefix('/todo')->group(function () {
+        Route::get('/index', 'indexTodo');
+        Route::post('/add', 'addTodo');
+        Route::post('/remove/{id}', 'removeTodo');
+    })
+;
